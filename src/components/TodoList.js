@@ -23,14 +23,14 @@ export default class TodoList extends React.Component {
   };
 
   addTodo = (todo) => {
-    this.setState({
-      todos: [todo, ...this.state.todos],
-    });
+    this.setState(state => ({
+      todos: [todo, ...state.todos],
+    }));
   };
 
   toggleComplete = (id) => {
-    this.setState({
-      todos: this.state.todos.map((todo) => {
+    this.setState(state => ({
+      todos: state.todos.map((todo) => {
         if (todo.id === id) {
           // supposed to update
           return {
@@ -41,7 +41,7 @@ export default class TodoList extends React.Component {
           return todo;
         }
       }),
-    });
+    }));
   };
 
   updateTodoToShow = (s) => {
@@ -51,15 +51,15 @@ export default class TodoList extends React.Component {
   };
 
   handleDeleteTodo = (id) => {
-    this.setState({
-      todos: this.state.todos.filter((todo) => todo.id !== id),
-    });
+    this.setState(state => ({
+      todos: state.todos.filter((todo) => todo.id !== id),
+    }));
   };
 
   removeAllTodosThatAreComplete = () => {
-    this.setState({
-      todos: this.state.todos.filter((todo) => !todo.complete),
-    });
+    this.setState(state => ({
+      todos: state.todos.filter((todo) => !todo.complete),
+    }));
   };
 
   render() {
