@@ -1,2 +1,2 @@
-# practical-react
 # Todo
+todo app 
