@@ -7,8 +7,8 @@ import Todo from "./Todo";
  - 1. add todo
  - 2. display todos
  - 3. cross off todo
-  4. show number of active todos
-  5. filter all/active/complete
+ - 4. show number of active todos
+ - 5. filter all/active/complete
   6. delete todo
   7. delete all complete
     7.1 only show if atleast one is complete
@@ -18,6 +18,7 @@ import Todo from "./Todo";
 export default class TodoList extends React.Component {
   state = {
     todos: [],
+    todosToShow: "all",
   };
 
   addTodo = (todo) => {
@@ -42,18 +43,41 @@ export default class TodoList extends React.Component {
     });
   };
 
+  updateTodoToShow = (s) => {
+    this.setState({
+      todosToShow: s,
+    });
+  };
+
   render() {
+    let todos = [];
+
+    if (this.state.todosToShow === "all") {
+      todos = this.state.todos;
+    } else if (this.state.todosToShow === "active") {
+      todos = this.state.todos.filter((todo) => !todo.complete);
+    } else if (this.state.todosToShow === "complete") {
+      todos = this.state.todos.filter((todo) => todo.complete);
+    }
+
     return (
       <div>
         <TodoForm onSubmit={this.addTodo} />
-        {this.state.todos.map(todo => (
+        {todos.map((todo) => (
           <Todo
             key={todo.id}
             toggleComplete={() => this.toggleComplete(todo.id)}
             todo={todo}
           />
         ))}
-        <div>todos left: {this.state.todos.filter(todo => !todo.complete).length}</div>
+        <div>
+          todos left: {this.state.todos.filter((todo) => !todo.complete).length}
+        </div>
+        <button onClick={() => this.updateTodoToShow("all")}>All</button>
+        <button onClick={() => this.updateTodoToShow("active")}>Active</button>
+        <button onClick={() => this.updateTodoToShow("complete")}>
+          Complete
+        </button>
       </div>
     );
   }
