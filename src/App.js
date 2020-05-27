@@ -1,10 +1,6 @@
 import React, { Component } from "react";
 import "./App.css";
 import TodoList from "./components/TodoList";
-import TodoListPat from "./components/TodoListPat";
-// import Form from "./components/MyForm";
-// import Form from "./components/ValidationForm";
-// import Rando from "./components/FetchRandomUser";
 
 class App extends Component {
   state = {
@@ -26,12 +22,7 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <TodoList /> 
-        {/* <Form /> */}
-        {/* <Rando /> */}
-        <br/>
-        <br/>
-        <TodoListPat />
+        <TodoList />
       </div>
     );
   }
