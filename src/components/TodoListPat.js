@@ -4,8 +4,8 @@ import TodoFormPat from "./TodoFormPat";
 import TodoPat from "./TodoPat";
 /*
   TodoMVC
-  1. add todo
-  2. display todos
+ - 1. add todo
+ - 2. display todos
   3. cross off todo
   4. show number of active todos
   5. filter all/active/complete
