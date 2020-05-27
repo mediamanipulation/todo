@@ -12,13 +12,14 @@ import Todo from "./Todo";
  - 6. delete todo
  - 7. delete all complete
    - 7.1 only show if atleast one is complete
-  8. button to toggle all on/off
+ - 8. button to toggle all on/off
 */
 
 export default class TodoList extends React.Component {
   state = {
     todos: [],
     todosToShow: "all",
+    toggleAllComplete: true,
   };
 
   addTodo = (todo) => {
@@ -91,13 +92,28 @@ export default class TodoList extends React.Component {
         <button onClick={() => this.updateTodoToShow("complete")}>
           Complete
         </button>
-        {this.state.todos.some(todo => todo.complete) ? (
+        {this.state.todos.some((todo) => todo.complete) ? (
           <div>
             <button onClick={this.removeAllTodosThatAreComplete}>
               Remove All Complete Todos
             </button>
           </div>
         ) : null}
+        <div>
+          <button
+            onClick={() =>
+              this.setState((state) => ({
+                todos: this.state.todos.map(todo => ({
+                  ...todo,
+                  complete: state.toggleAllComplete
+                })),
+                toggleAllComplete: !state.toggleAllComplete,
+              }))
+            }
+          >
+            Toggle All Complete: {`${this.state.toggleAllComplete}`}
+          </button>
+        </div>
       </div>
     );
   }
