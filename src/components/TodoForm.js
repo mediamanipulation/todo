@@ -1,9 +1,9 @@
 import React from "react";
-import shortid from 'shortid';
+import shortid from "shortid";
 
 export default class TodoForm extends React.Component {
   state = {
-    text: ""
+    text: "",
   };
 
   handleChange = (event) => {
@@ -12,19 +12,18 @@ export default class TodoForm extends React.Component {
     });
   };
 
-  handleSubmit = (e) =>{
-      e.preventDefault();
-      // submit the form 
-      this.props.onSubmit( {
-        id: shortid.generate(),
-        text: this.state.text,
-        complete: false
-      })
-      this.setState({
-          text:''
-      })
-  }
-
+  handleSubmit = (e) => {
+    e.preventDefault();
+    // submit the form
+    this.props.onSubmit({
+      id: shortid.generate(),
+      text: this.state.text,
+      complete: false,
+    });
+    this.setState({
+      text: "",
+    });
+  };
 
   render() {
     return (

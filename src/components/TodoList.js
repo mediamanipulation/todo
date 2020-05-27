@@ -6,7 +6,7 @@ import Todo from "./Todo";
   TodoMVC
  - 1. add todo
  - 2. display todos
-  3. cross off todo
+ - 3. cross off todo
   4. show number of active todos
   5. filter all/active/complete
   6. delete todo
@@ -53,6 +53,7 @@ export default class TodoList extends React.Component {
             todo={todo}
           />
         ))}
+        <div>todos left: {this.state.todos.filter(todo => !todo.complete).length}</div>
       </div>
     );
   }
