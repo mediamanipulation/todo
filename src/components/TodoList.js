@@ -11,7 +11,7 @@ import Todo from "./Todo";
  - 5. filter all/active/complete
  - 6. delete todo
  - 7. delete all complete
-    7.1 only show if atleast one is complete
+   - 7.1 only show if atleast one is complete
   8. button to toggle all on/off
 */
 
@@ -57,7 +57,7 @@ export default class TodoList extends React.Component {
 
   removeAllTodosThatAreComplete = () => {
     this.setState({
-      todos: this.state.todos.filter((todo) => !todo.complete)
+      todos: this.state.todos.filter((todo) => !todo.complete),
     });
   };
 
@@ -91,9 +91,13 @@ export default class TodoList extends React.Component {
         <button onClick={() => this.updateTodoToShow("complete")}>
           Complete
         </button>
-        <div>
-          <button onClick={this.removeAllTodosThatAreComplete} >Remove All Complete Todos</button>
-        </div>
+        {this.state.todos.some(todo => todo.complete) ? (
+          <div>
+            <button onClick={this.removeAllTodosThatAreComplete}>
+              Remove All Complete Todos
+            </button>
+          </div>
+        ) : null}
       </div>
     );
   }
